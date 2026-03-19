@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* --- İNTRO (ZARF VE VİDEO) KISMI - TAM EKRAN --- */
+        /* --- İNTRO (ZARF VE VİDEO) KISMI --- */
         #intro-screen {
             position: fixed;
             top: 0;
@@ -66,7 +66,7 @@
             text-align: center;
         }
 
-        /* TEMEL BÖLÜM AYARI (Tarih ve Lokasyon için eski standart ayar) */
+        /* TEMEL BÖLÜM AYARI */
         .section {
             padding: 80px 20px;
             text-align: center;
@@ -87,8 +87,6 @@
         /* =========================================
            ARKA PLAN GÖRSELLERİ
            ========================================= */
-
-        /* 1. Kısım: Evleniyoruz Arka Planı (Tam Ekran) */
         .bg-hero {
             background-color: var(--dark); 
             background-image: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.6)), url('resim_1.png');
@@ -98,7 +96,6 @@
         .bg-hero h2 { font-size: 2rem; letter-spacing: 5px; margin-bottom: 10px; }
         .bg-hero h1 { font-size: 4rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
 
-        /* 2. Kısım: Davetiye Yazısı Arka Planı (Tam Ekran) */
         .bg-invite {
             background-color: #111; 
             background-image: linear-gradient(rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)), url('resim_3.png');
@@ -109,7 +106,6 @@
             line-height: 1.8;
         }
 
-        /* 3. Kısım: Aileler Arka Planı (Tam Ekran) */
         .bg-parents {
             background-color: var(--dark);
             background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('resim_4.png');
@@ -119,7 +115,6 @@
             border-bottom: 1px solid var(--gold);
         }
 
-        /* 4. Kısım: Tarih & Saat Arka Planı (Eski Kompakt Düzen) */
         .bg-date {
             background-color: #151515;
             background-image: linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.8)), url('bolum4-tarih.jpg');
@@ -127,7 +122,6 @@
             background-size: cover;
         }
 
-        /* 5. Kısım: Lokasyon ve Harita Arka Planı (Eski Kompakt Düzen) */
         .bg-location {
             background-color: var(--dark); 
             background-image: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('bolum5-lokasyon.jpg');
@@ -215,6 +209,51 @@
         }
         #sound-control:hover { background: var(--gold); color: var(--dark); }
 
+        /* =========================================
+           MOBİL OPTİMİZASYON (TELEFONLAR İÇİN)
+           ========================================= */
+        @media (max-width: 768px) {
+            .bg-hero h1 {
+                font-size: 2.5rem; /* İsimleri küçülttük */
+            }
+            .bg-hero h2 {
+                font-size: 1.2rem;
+                letter-spacing: 3px;
+            }
+            .bg-invite {
+                font-size: 1rem; /* Davetiye yazısını daralttık */
+                padding: 40px 15px;
+            }
+            .parents-grid div p:first-child {
+                font-size: 1rem !important;
+            }
+            .parents-grid div p:last-child {
+                font-size: 0.9rem !important;
+            }
+            h3 {
+                font-size: 1.3rem !important;
+            }
+            h2 {
+                font-size: 1.5rem !important;
+            }
+            .time-box {
+                padding: 10px;
+                min-width: 50px;
+                gap: 10px;
+            }
+            .time-box span {
+                font-size: 1.5rem;
+            }
+            .section {
+                padding: 50px 15px; /* Genel boşlukları daralttık */
+            }
+            /* İntro görseli mobilde çok kesiliyorsa ekrana sığdırmak için cover yerine contain kullanabiliriz */
+            #intro-image {
+                object-fit: contain;
+                background-color: #f4efeb;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -226,7 +265,7 @@
     <button id="sound-control" onclick="toggleSound()" style="display: none;">Ses: AÇIK</button>
 
     <div id="intro-screen" onclick="playVideo()">
-        <img id="intro-image" src="resim_2.PNG" alt="Davetiye Zarfı">
+        <img id="intro-image" src="resim_2.png" alt="Davetiye Zarfı">
         <video id="intro-video" src="Video_Hazır_Bağlantı_Verildi.mp4" playsinline></video>
     </div>
 
@@ -260,7 +299,7 @@
 
         <div class="section bg-date">
             <h2 style="margin-bottom: 20px; font-size: 2rem;">DÜĞÜN TARİHİ</h2>
-            <h3 style="color: #fff; font-size: 1.5rem;">26.04.2026 - 18:30 </h3>
+            <h3 style="color: #fff; font-size: 1.5rem;">26.04.2026</h3>
             <div class="countdown-container" id="dugun-countdown"></div>
         </div>
 
@@ -271,7 +310,7 @@
                     <h3 style="color: var(--light-gold);">DÜĞÜN</h3>
                     <p>Malatya Saray Havuzbaşı Restorant</p>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.111111111111!2d38.3000!3d38.3300!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDE5JzQ4LjAiTiAzOMKwMTgnMDAuMCJF!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" allowfullscreen="" loading="lazy"></iframe>
-                    <a href="https://share.google/3BJPNEYDhQJaYHZbW" target="_blank" class="btn">Yol Tarifi Al</a>
+                    <a href="https://share.google/IrOJDgLoUeT9q4XhG" target="_blank" class="btn">Yol Tarifi Al</a>
                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%C4%B0rem+%26+Furkan+D%C3%BC%C4%9F%C3%BCn&dates=20260426T153000Z/20260426T193000Z&details=D%C3%BC%C4%9F%C3%BCn+T%C3%B6reni&location=Malatya+Saray+Havuzba%C5%9F%C4%B1+Restorant" target="_blank" class="btn">Takvime Ekle (26 Nisan 18:30)</a>
                 </div>
             </div>
@@ -355,4 +394,3 @@
     </script>
 </body>
 </html>
- 
